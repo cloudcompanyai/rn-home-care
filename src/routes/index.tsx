@@ -126,7 +126,7 @@ const phoneRule = z.string().trim().regex(/^[6-9]\d{9}$/, "Enter a valid 10-digi
 const nameRule = z.string().trim().min(2, "Please enter your name").max(80);
 
 function useDummyForm(schema: z.ZodTypeAny) {
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<{ [k: string]: string | undefined; name?: string; phone?: string; city?: string; service?: string; qualification?: string; experience?: string; message?: string }>({});
   const [done, setDone] = useState(false);
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -144,7 +144,7 @@ function useDummyForm(schema: z.ZodTypeAny) {
   return { errors, done, onSubmit, reset: () => setDone(false) };
 }
 
-function Field({ label, error, children }: { label: string; error?: string; children: ReactNode }) {
+function Field({ label, error, children }: { label: string; error?: string | undefined; children: ReactNode }) {
   return (
     <label className="block">
       <span className="mb-1.5 block text-xs font-semibold text-foreground">{label}</span>
@@ -367,7 +367,7 @@ function WhyUs() {
 function Testimonials() {
   const [i, setI] = useState(0);
   useEffect(() => { const t = setInterval(() => setI((x) => (x + 1) % testimonials.length), 6000); return () => clearInterval(t); }, []);
-  const t = testimonials[i];
+  const t = testimonials[i] ?? testimonials[0]!;
   return (
     <section className="mx-auto max-w-4xl px-4 py-20">
       <SectionHead eyebrow="Kind words" title="What Families Say" />
