@@ -164,7 +164,7 @@ function ServiceSelect({ name = "service" }: { name?: string }) {
 }
 
 function EnquiryForm() {
-  const f = useDummyForm(z.object({ name: nameRule, phone: phoneRule, city: z.string().trim().min(2, "Enter your area / city").max(60), service: z.string().min(1, "Choose a service") }));
+  const f = useDummyForm(z.object({ name: nameRule, phone: phoneRule, city: z.string().trim().min(2, "Enter your area / city").max(60), service: z.string({ message: "Choose a service" }).min(1, "Choose a service") }));
   if (f.done) return <Success onReset={f.reset} />;
   return (
     <form onSubmit={f.onSubmit} noValidate className="space-y-3">
@@ -215,7 +215,7 @@ function Hero() {
           <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-1.5 text-xs font-semibold text-accent">
             <span className="h-2 w-2 animate-pulse rounded-full bg-accent" /> Available 24×7 in Gurugram & NCR
           </span>
-          <h1 className="mt-5 text-4xl font-extrabold leading-tight text-foreground sm:text-5xl lg:text-6xl">
+          <h1 className="mt-5 text-4xl font-extrabold leading-tight text-foreground sm:text-5xl xl:text-[3.4rem]">
             Professional Nursing & Care, <span className="text-primary">At Your Home</span>
           </h1>
           <p className="mt-3 font-script text-3xl text-accent">Ghar par behtar care, har pal saath ♡</p>
@@ -389,8 +389,8 @@ function Testimonials() {
 function Careers() {
   const f = useDummyForm(z.object({
     name: nameRule, phone: phoneRule,
-    qualification: z.string().min(1, "Select qualification"),
-    experience: z.string().min(1, "Select experience"),
+    qualification: z.string({ message: "Select qualification" }).min(1),
+    experience: z.string({ message: "Select experience" }).min(1),
     city: z.string().trim().min(2, "Enter your city").max(60),
   }));
   return (
@@ -456,7 +456,7 @@ function Areas() {
 }
 
 function Contact() {
-  const f = useDummyForm(z.object({ name: nameRule, phone: phoneRule, service: z.string().min(1, "Choose a service"), message: z.string().trim().max(500).optional() }));
+  const f = useDummyForm(z.object({ name: nameRule, phone: phoneRule, service: z.string({ message: "Choose a service" }).min(1, "Choose a service"), message: z.string().trim().max(500).optional() }));
   const info = [
     { icon: PhoneCall, l: "Call us 24×7", v: PHONE, href: `tel:${PHONE.replace(/\s/g, "")}` },
     { icon: Mail, l: "Email", v: EMAIL, href: `mailto:${EMAIL}` },
