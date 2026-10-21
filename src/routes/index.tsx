@@ -313,7 +313,7 @@ function Services() {
               <DialogHeader>
                 <span className={`mb-2 grid h-14 w-14 place-items-center rounded-2xl ${tileCls[(active ?? 0) % 4]}`}><s.icon className="h-7 w-7" /></span>
                 <DialogTitle className="text-xl">{s.title}</DialogTitle>
-                <DialogDescription className="text-base leading-relaxed">{active.detail}</DialogDescription>
+                <DialogDescription className="text-base leading-relaxed">{s.detail}</DialogDescription>
               </DialogHeader>
               <div className="flex flex-wrap gap-3 pt-2">
                 <Button asChild variant="cta" size="lg"><a href="#enquiry" onClick={() => setActive(null)}>Book this service</a></Button>
@@ -347,11 +347,11 @@ function HowItWorks() {
   );
 }
 
-const planTones = {
+const planTones: Record<"orange" | "purple" | "green", { card: string; name: string; check: string; btn: "cta" | "brand" | "green" }> = {
   orange: { card: "border-accent/30 bg-accent/[0.07]", name: "text-accent", check: "text-accent", btn: "cta" },
   purple: { card: "border-primary/30 bg-primary/[0.07]", name: "text-primary", check: "text-primary", btn: "brand" },
   green: { card: "border-green/30 bg-green/[0.07]", name: "text-green", check: "text-green", btn: "green" },
-} as const;
+};
 
 function Pricing() {
   return (
