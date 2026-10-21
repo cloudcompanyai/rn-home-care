@@ -335,8 +335,8 @@ function HowItWorks() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <div key={s.title} className="relative rounded-3xl bg-card p-7 shadow-soft">
-              <span className="absolute right-6 top-5 text-5xl font-extrabold text-secondary">0{i + 1}</span>
-              <span className="grid h-12 w-12 place-items-center rounded-full bg-primary text-primary-foreground"><s.icon className="h-5 w-5" /></span>
+              <span className={`absolute right-6 top-5 text-5xl font-extrabold ${["text-accent/30", "text-primary/30", "text-green/30", "text-pink/30"][i % 4]}`}>0{i + 1}</span>
+              <span className={`grid h-12 w-12 place-items-center rounded-full ${tileCls[i % 4]}`}><s.icon className="h-5 w-5" /></span>
               <h3 className="mt-5 text-lg font-semibold text-foreground">{s.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{s.text}</p>
             </div>
@@ -347,23 +347,32 @@ function HowItWorks() {
   );
 }
 
+const planTones = {
+  orange: { card: "border-accent/30 bg-accent/[0.07]", name: "text-accent", check: "text-accent", btn: "cta" },
+  purple: { card: "border-primary/30 bg-primary/[0.07]", name: "text-primary", check: "text-primary", btn: "brand" },
+  green: { card: "border-green/30 bg-green/[0.07]", name: "text-green", check: "text-green", btn: "green" },
+} as const;
+
 function Pricing() {
   return (
     <section id="pricing" className="mx-auto max-w-7xl px-4 py-20">
       <SectionHead eyebrow="Honest pricing" title="Care Plans for Every Need" sub="Indicative starting prices. Final quote depends on patient condition and caregiver type." />
       <div className="grid gap-6 lg:grid-cols-3">
-        {plans.map((p) => (
-          <div key={p.name} className={`relative flex flex-col rounded-3xl border p-8 transition hover:-translate-y-1 ${p.featured ? "border-primary bg-brand text-primary-foreground shadow-lift" : "border-border bg-card shadow-soft"}`}>
-            {p.featured && <span className="absolute -top-3 left-8 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">Most popular</span>}
-            <h3 className="text-lg font-semibold">{p.name}</h3>
-            <p className="mt-4"><span className="text-4xl font-extrabold">{p.price}</span> <span className="text-sm opacity-80">{p.unit}</span></p>
-            {p.alt && <p className="mt-1 text-sm opacity-85">{p.alt}</p>}
-            <ul className="mt-6 flex-1 space-y-3 text-sm">
-              {p.points.map((pt) => <li key={pt} className="flex gap-2"><CheckCircle2 className={`h-5 w-5 shrink-0 ${p.featured ? "" : "text-accent"}`} />{pt}</li>)}
-            </ul>
-            <Button asChild variant={p.featured ? "cta" : "brand"} size="xl" className="mt-8 w-full"><a href="#enquiry">Get Quote</a></Button>
-          </div>
-        ))}
+        {plans.map((p) => {
+          const t = planTones[p.tone];
+          return (
+            <div key={p.name} className={`relative flex flex-col rounded-3xl border p-8 shadow-soft transition hover:-translate-y-1 hover:shadow-lift ${t.card}`}>
+              {p.featured && <span className="absolute -top-3 left-8 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">Most popular</span>}
+              <h3 className={`text-lg font-semibold ${t.name}`}>{p.name}</h3>
+              <p className="mt-4"><span className="text-4xl font-extrabold text-foreground">{p.price}</span> <span className="text-sm opacity-80">{p.unit}</span></p>
+              {p.alt && <p className="mt-1 text-sm opacity-85">{p.alt}</p>}
+              <ul className="mt-6 flex-1 space-y-3 text-sm text-foreground">
+                {p.points.map((pt) => <li key={pt} className="flex gap-2"><CheckCircle2 className={`h-5 w-5 shrink-0 ${t.check}`} />{pt}</li>)}
+              </ul>
+              <Button asChild variant={t.btn} size="xl" className="mt-8 w-full"><a href="#enquiry">Get Quote</a></Button>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
@@ -378,9 +387,9 @@ function WhyUs() {
           <p className="font-script text-2xl text-accent">Because you matter</p>
           <h2 className="mt-1 text-3xl font-bold text-foreground sm:text-4xl">Why Families Choose RN Health</h2>
           <div className="mt-8 space-y-5">
-            {reasons.map((r) => (
+            {reasons.map((r, i) => (
               <div key={r.title} className="flex gap-4">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-card text-primary shadow-soft"><r.icon className="h-5 w-5" /></span>
+                <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl shadow-soft ${tileCls[i % 4]}`}><r.icon className="h-5 w-5" /></span>
                 <div className="min-w-0"><h3 className="font-semibold text-foreground">{r.title}</h3><p className="text-sm text-muted-foreground">{r.text}</p></div>
               </div>
             ))}
@@ -475,7 +484,7 @@ function Areas() {
       <div className="mx-auto max-w-5xl px-4 text-center">
         <SectionHead eyebrow="Near you" title="Areas We Serve" sub="Gurugram and nearby NCR localities — with caregivers living close by for faster response." />
         <div className="flex flex-wrap justify-center gap-3">
-          {areas.map((a) => <span key={a} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-soft"><MapPin className="h-4 w-4 text-accent" />{a}</span>)}
+          {areas.map((a, i) => <span key={a} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-soft"><MapPin className={`h-4 w-4 ${pinCls[i % 6]}`} />{a}</span>)}
         </div>
       </div>
     </section>
@@ -494,9 +503,9 @@ function Contact() {
       <SectionHead eyebrow="We're here for you" title="Contact Us" />
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="space-y-4">
-          {info.map((x) => (
+          {info.map((x, i) => (
             <a key={x.l} href={x.href} className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft">
-              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-secondary text-primary"><x.icon className="h-5 w-5" /></span>
+              <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${tileCls[i % 4]}`}><x.icon className="h-5 w-5" /></span>
               <div className="min-w-0"><p className="text-xs text-muted-foreground">{x.l}</p><p className="truncate font-semibold text-foreground">{x.v}</p></div>
             </a>
           ))}
@@ -545,7 +554,7 @@ function Floating() {
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
       <a href={`tel:${PHONE.replace(/\s/g, "")}`} aria-label="Call now" className="grid h-14 w-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-lift transition hover:scale-110"><Phone className="h-6 w-6" /></a>
-      <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20need%20home%20care%20assistance" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid h-14 w-14 place-items-center rounded-full bg-accent text-accent-foreground shadow-lift transition hover:scale-110"><MessageCircle className="h-6 w-6" /></a>
+      <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20need%20home%20care%20assistance" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid h-14 w-14 place-items-center rounded-full bg-green text-green-foreground shadow-lift transition hover:scale-110"><MessageCircle className="h-6 w-6" /></a>
     </div>
   );
 }
