@@ -48,9 +48,9 @@ const steps = [
 ];
 
 const plans = [
-  { name: "Hourly Visit", price: "₹499", unit: "/ visit onwards", points: ["Injections & IV drips", "Wound dressing", "Vitals check & report", "Catheter / Ryles tube care"] },
-  { name: "Daily Care", price: "₹1,199", unit: "/ 12 hr shift onwards", alt: "₹1,999 / 24 hr live-in", points: ["Trained nurse or attendant", "Medication & feeding", "Hygiene & mobility help", "Daily care log for family"], featured: true },
-  { name: "Monthly Package", price: "₹28,000", unit: "/ month onwards", points: ["Dedicated caregiver", "Free replacement guarantee", "Weekly supervisor visit", "Priority 24×7 support"] },
+  { name: "Hourly Visit", tone: "orange", price: "₹499", unit: "/ visit onwards", points: ["Injections & IV drips", "Wound dressing", "Vitals check & report", "Catheter / Ryles tube care"] },
+  { name: "Daily Care", tone: "purple", price: "₹1,199", unit: "/ 12 hr shift onwards", alt: "₹1,999 / 24 hr live-in", points: ["Trained nurse or attendant", "Medication & feeding", "Hygiene & mobility help", "Daily care log for family"], featured: true },
+  { name: "Monthly Package", tone: "green", price: "₹28,000", unit: "/ month onwards", points: ["Dedicated caregiver", "Free replacement guarantee", "Weekly supervisor visit", "Priority 24×7 support"] },
 ];
 
 const reasons = [
@@ -85,17 +85,29 @@ const nav = [
   ["Home", "#home"], ["Services", "#services"], ["How It Works", "#how"], ["Pricing", "#pricing"], ["Careers", "#careers"], ["Contact", "#contact"],
 ];
 
+const tileCls = ["bg-accent/15 text-accent", "bg-primary/15 text-primary", "bg-green/15 text-green", "bg-pink/15 text-pink"];
+const pinCls = ["text-accent", "text-primary", "text-green", "text-pink", "text-sky", "text-sun"];
+const heroChips = [
+  { icon: ShieldCheck, label: "Verified", sub: "Professionals", tone: "pink" },
+  { icon: Clock, label: "24×7", sub: "Availability", tone: "green" },
+  { icon: HeartHandshake, label: "Personalized", sub: "Care Plans", tone: "orange" },
+  { icon: MapPin, label: "Service Across", sub: "Major Cities", tone: "sky" },
+];
+const chipTone: Record<string, string> = {
+  pink: "bg-pink/15 text-pink", green: "bg-green/15 text-green", orange: "bg-accent/15 text-accent", sky: "bg-sky/15 text-sky", purple: "bg-primary/15 text-primary",
+};
+
 const inputCls = "w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/20";
 
 function Logo() {
   return (
     <a href="#home" className="flex min-w-0 items-center gap-2.5">
-      <span className="relative grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-brand text-primary-foreground shadow-soft">
+      <span className="relative grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-accent text-accent-foreground shadow-soft">
         <HomeIcon className="h-6 w-6" />
         <Heart className="absolute -right-1 -top-1 h-4 w-4 fill-heart text-heart" />
       </span>
       <span className="min-w-0 leading-tight">
-        <span className="block truncate text-lg font-extrabold text-primary">RN <span className="text-accent">Health</span></span>
+        <span className="block truncate text-lg font-extrabold text-primary">RN <span className="text-green">Health</span></span>
         <span className="block truncate text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Home Care Service</span>
       </span>
     </a>
@@ -105,7 +117,7 @@ function Logo() {
 function SectionHead({ eyebrow, title, sub }: { eyebrow: string; title: string; sub?: string }) {
   return (
     <div className="mx-auto mb-12 max-w-2xl text-center">
-      <p className="font-script text-2xl text-accent">{eyebrow}</p>
+      <p className="font-script text-2xl text-green">{eyebrow}</p>
       <h2 className="mt-1 text-3xl font-bold text-foreground sm:text-4xl">{title}</h2>
       {sub && <p className="mt-3 text-muted-foreground">{sub}</p>}
     </div>
@@ -172,7 +184,7 @@ function EnquiryForm() {
       <Field label="Mobile number" error={f.errors.phone}><input name="phone" inputMode="numeric" maxLength={10} placeholder="10-digit mobile" className={inputCls} /></Field>
       <Field label="Area / City" error={f.errors.city}><input name="city" maxLength={60} placeholder="e.g. Sector 56, Gurugram" className={inputCls} /></Field>
       <Field label="Service needed" error={f.errors.service}><ServiceSelect /></Field>
-      <Button type="submit" variant="cta" size="xl" className="w-full">Get a Free Call Back</Button>
+      <Button type="submit" variant="brand" size="xl" className="w-full">Get a Free Call Back</Button>
     </form>
   );
 }
@@ -210,13 +222,18 @@ function Header() {
 function Hero() {
   return (
     <section id="home" className="relative overflow-hidden bg-hero">
-      <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.15fr_1fr] lg:py-20">
+      <span aria-hidden className="pointer-events-none absolute -left-24 top-8 h-72 w-72 rounded-full bg-pink/20 blur-3xl" />
+      <span aria-hidden className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
+      <span aria-hidden className="pointer-events-none absolute left-1/2 top-44 h-64 w-64 rounded-full bg-green/15 blur-3xl" />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.15fr_1fr] lg:py-20">
         <div className="reveal">
           <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-1.5 text-xs font-semibold text-accent">
             <span className="h-2 w-2 animate-pulse rounded-full bg-accent" /> Available 24×7 in Gurugram & NCR
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-tight text-foreground sm:text-5xl xl:text-[3.4rem]">
-            Professional Nursing & Care, <span className="text-primary">At Your Home</span>
+            Professional <span className="text-accent">Nursing & Care,</span>
+            <br />
+            <span className="text-primary">At Your Home</span>
           </h1>
           <p className="mt-3 font-script text-3xl text-accent">Ghar par behtar care, har pal saath ♡</p>
           <p className="mt-4 max-w-xl text-lg text-muted-foreground">
@@ -226,11 +243,20 @@ function Hero() {
             <Button asChild variant="cta" size="xl"><a href="#enquiry">Book a Nurse</a></Button>
             <Button asChild variant="soft" size="xl"><a href={`tel:${PHONE.replace(/\s/g, "")}`}><Phone /> Call Now</a></Button>
           </div>
+          <div className="mt-8 grid max-w-lg grid-cols-2 gap-3 sm:grid-cols-4">
+            {heroChips.map((c) => (
+              <div key={c.label} className="flex items-center gap-2.5 rounded-2xl bg-card/80 px-3 py-2.5 shadow-soft">
+                <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-full ${chipTone[c.tone]}`}><c.icon className="h-4 w-4" /></span>
+                <span className="min-w-0 text-xs font-semibold leading-tight text-foreground">{c.label}<span className="block font-medium text-muted-foreground">{c.sub}</span></span>
+              </div>
+            ))}
+          </div>
           <div className="relative mt-10 overflow-hidden rounded-3xl shadow-lift lg:hidden">
             <img src={hero} alt="Nurse caring for an elderly woman at home" width={1280} height={1024} className="h-64 w-full object-cover" />
           </div>
         </div>
         <div className="relative reveal" id="enquiry">
+          <span className="absolute left-2 -top-2 z-10 hidden -rotate-6 font-script text-2xl text-heart lg:block">Care like family ♡</span>
           <img src={hero} alt="Nurse caring for an elderly woman at home" width={1280} height={1024} className="absolute -right-24 -top-10 hidden h-[115%] w-[130%] max-w-none rounded-[3rem] object-cover opacity-95 lg:block" />
           <div className="relative rounded-3xl border border-border bg-card/95 p-6 shadow-lift backdrop-blur lg:ml-auto lg:mt-40 lg:max-w-sm">
             <h3 className="text-lg font-bold text-foreground">Quick Enquiry</h3>
@@ -265,27 +291,28 @@ function TrustBar() {
 }
 
 function Services() {
-  const [active, setActive] = useState<(typeof services)[number] | null>(null);
+  const [active, setActive] = useState<number | null>(null);
+  const s = active === null ? null : services[active];
   return (
     <section id="services" className="mx-auto max-w-7xl px-4 py-20">
       <SectionHead eyebrow="What we do" title="Home Healthcare Services" sub="Every service is delivered by trained, verified professionals and tailored to your family's needs." />
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((s, i) => (
-          <button key={s.title} onClick={() => setActive(s)} className="group rounded-3xl border border-border bg-card p-6 text-left transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift">
-            <span className={`grid h-14 w-14 place-items-center rounded-2xl transition ${i % 2 ? "bg-accent/10 text-accent" : "bg-secondary text-primary"} group-hover:scale-110`}><s.icon className="h-7 w-7" /></span>
+          <button key={s.title} onClick={() => setActive(i)} className="group rounded-3xl border border-border bg-card p-6 text-left transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-lift">
+            <span className={`grid h-14 w-14 place-items-center rounded-2xl transition ${tileCls[i % 4]} group-hover:scale-110`}><s.icon className="h-7 w-7" /></span>
             <h3 className="mt-5 font-semibold text-foreground">{s.title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">{s.short}</p>
             <span className="mt-4 inline-block text-sm font-semibold text-primary">Learn more →</span>
           </button>
         ))}
       </div>
-      <Dialog open={!!active} onOpenChange={(o) => !o && setActive(null)}>
+      <Dialog open={s !== null} onOpenChange={(o) => !o && setActive(null)}>
         <DialogContent className="rounded-3xl">
-          {active && (
+          {s && (
             <>
               <DialogHeader>
-                <span className="mb-2 grid h-14 w-14 place-items-center rounded-2xl bg-secondary text-primary"><active.icon className="h-7 w-7" /></span>
-                <DialogTitle className="text-xl">{active.title}</DialogTitle>
+                <span className={`mb-2 grid h-14 w-14 place-items-center rounded-2xl ${tileCls[(active ?? 0) % 4]}`}><s.icon className="h-7 w-7" /></span>
+                <DialogTitle className="text-xl">{s.title}</DialogTitle>
                 <DialogDescription className="text-base leading-relaxed">{active.detail}</DialogDescription>
               </DialogHeader>
               <div className="flex flex-wrap gap-3 pt-2">
@@ -308,8 +335,8 @@ function HowItWorks() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <div key={s.title} className="relative rounded-3xl bg-card p-7 shadow-soft">
-              <span className="absolute right-6 top-5 text-5xl font-extrabold text-secondary">0{i + 1}</span>
-              <span className="grid h-12 w-12 place-items-center rounded-full bg-primary text-primary-foreground"><s.icon className="h-5 w-5" /></span>
+              <span className={`absolute right-6 top-5 text-5xl font-extrabold ${["text-accent/30", "text-primary/30", "text-green/30", "text-pink/30"][i % 4]}`}>0{i + 1}</span>
+              <span className={`grid h-12 w-12 place-items-center rounded-full ${tileCls[i % 4]}`}><s.icon className="h-5 w-5" /></span>
               <h3 className="mt-5 text-lg font-semibold text-foreground">{s.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{s.text}</p>
             </div>
@@ -320,23 +347,32 @@ function HowItWorks() {
   );
 }
 
+const planTones = {
+  orange: { card: "border-accent/30 bg-accent/[0.07]", name: "text-accent", check: "text-accent", btn: "cta" },
+  purple: { card: "border-primary/30 bg-primary/[0.07]", name: "text-primary", check: "text-primary", btn: "brand" },
+  green: { card: "border-green/30 bg-green/[0.07]", name: "text-green", check: "text-green", btn: "green" },
+} as const;
+
 function Pricing() {
   return (
     <section id="pricing" className="mx-auto max-w-7xl px-4 py-20">
       <SectionHead eyebrow="Honest pricing" title="Care Plans for Every Need" sub="Indicative starting prices. Final quote depends on patient condition and caregiver type." />
       <div className="grid gap-6 lg:grid-cols-3">
-        {plans.map((p) => (
-          <div key={p.name} className={`relative flex flex-col rounded-3xl border p-8 transition hover:-translate-y-1 ${p.featured ? "border-primary bg-brand text-primary-foreground shadow-lift" : "border-border bg-card shadow-soft"}`}>
-            {p.featured && <span className="absolute -top-3 left-8 rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">Most popular</span>}
-            <h3 className="text-lg font-semibold">{p.name}</h3>
-            <p className="mt-4"><span className="text-4xl font-extrabold">{p.price}</span> <span className="text-sm opacity-80">{p.unit}</span></p>
-            {p.alt && <p className="mt-1 text-sm opacity-85">{p.alt}</p>}
-            <ul className="mt-6 flex-1 space-y-3 text-sm">
-              {p.points.map((pt) => <li key={pt} className="flex gap-2"><CheckCircle2 className={`h-5 w-5 shrink-0 ${p.featured ? "" : "text-accent"}`} />{pt}</li>)}
-            </ul>
-            <Button asChild variant={p.featured ? "cta" : "brand"} size="xl" className="mt-8 w-full"><a href="#enquiry">Get Quote</a></Button>
-          </div>
-        ))}
+        {plans.map((p) => {
+          const t = planTones[p.tone];
+          return (
+            <div key={p.name} className={`relative flex flex-col rounded-3xl border p-8 shadow-soft transition hover:-translate-y-1 hover:shadow-lift ${t.card}`}>
+              {p.featured && <span className="absolute -top-3 left-8 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">Most popular</span>}
+              <h3 className={`text-lg font-semibold ${t.name}`}>{p.name}</h3>
+              <p className="mt-4"><span className="text-4xl font-extrabold text-foreground">{p.price}</span> <span className="text-sm opacity-80">{p.unit}</span></p>
+              {p.alt && <p className="mt-1 text-sm opacity-85">{p.alt}</p>}
+              <ul className="mt-6 flex-1 space-y-3 text-sm text-foreground">
+                {p.points.map((pt) => <li key={pt} className="flex gap-2"><CheckCircle2 className={`h-5 w-5 shrink-0 ${t.check}`} />{pt}</li>)}
+              </ul>
+              <Button asChild variant={t.btn} size="xl" className="mt-8 w-full"><a href="#enquiry">Get Quote</a></Button>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
@@ -351,9 +387,9 @@ function WhyUs() {
           <p className="font-script text-2xl text-accent">Because you matter</p>
           <h2 className="mt-1 text-3xl font-bold text-foreground sm:text-4xl">Why Families Choose RN Health</h2>
           <div className="mt-8 space-y-5">
-            {reasons.map((r) => (
+            {reasons.map((r, i) => (
               <div key={r.title} className="flex gap-4">
-                <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-card text-primary shadow-soft"><r.icon className="h-5 w-5" /></span>
+                <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl shadow-soft ${tileCls[i % 4]}`}><r.icon className="h-5 w-5" /></span>
                 <div className="min-w-0"><h3 className="font-semibold text-foreground">{r.title}</h3><p className="text-sm text-muted-foreground">{r.text}</p></div>
               </div>
             ))}
@@ -448,7 +484,7 @@ function Areas() {
       <div className="mx-auto max-w-5xl px-4 text-center">
         <SectionHead eyebrow="Near you" title="Areas We Serve" sub="Gurugram and nearby NCR localities — with caregivers living close by for faster response." />
         <div className="flex flex-wrap justify-center gap-3">
-          {areas.map((a) => <span key={a} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-soft"><MapPin className="h-4 w-4 text-accent" />{a}</span>)}
+          {areas.map((a, i) => <span key={a} className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground shadow-soft"><MapPin className={`h-4 w-4 ${pinCls[i % 6]}`} />{a}</span>)}
         </div>
       </div>
     </section>
@@ -467,9 +503,9 @@ function Contact() {
       <SectionHead eyebrow="We're here for you" title="Contact Us" />
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="space-y-4">
-          {info.map((x) => (
+          {info.map((x, i) => (
             <a key={x.l} href={x.href} className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft">
-              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-secondary text-primary"><x.icon className="h-5 w-5" /></span>
+              <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${tileCls[i % 4]}`}><x.icon className="h-5 w-5" /></span>
               <div className="min-w-0"><p className="text-xs text-muted-foreground">{x.l}</p><p className="truncate font-semibold text-foreground">{x.v}</p></div>
             </a>
           ))}
@@ -518,7 +554,7 @@ function Floating() {
   return (
     <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
       <a href={`tel:${PHONE.replace(/\s/g, "")}`} aria-label="Call now" className="grid h-14 w-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-lift transition hover:scale-110"><Phone className="h-6 w-6" /></a>
-      <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20need%20home%20care%20assistance" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid h-14 w-14 place-items-center rounded-full bg-accent text-accent-foreground shadow-lift transition hover:scale-110"><MessageCircle className="h-6 w-6" /></a>
+      <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20need%20home%20care%20assistance" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid h-14 w-14 place-items-center rounded-full bg-green text-green-foreground shadow-lift transition hover:scale-110"><MessageCircle className="h-6 w-6" /></a>
     </div>
   );
 }

@@ -18,6 +18,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         cta: "rounded-full bg-accent text-accent-foreground font-semibold shadow-soft hover:-translate-y-0.5 hover:bg-accent/90 transition-all",
         brand: "rounded-full bg-primary text-primary-foreground font-semibold shadow-soft hover:-translate-y-0.5 hover:bg-primary/90 transition-all",
+        green: "rounded-full bg-green text-green-foreground font-semibold shadow-soft hover:-translate-y-0.5 hover:bg-green/90 transition-all",
         soft: "rounded-full border-2 border-primary/20 bg-card text-primary font-semibold hover:border-primary hover:bg-secondary transition-all",
       },
       size: {
