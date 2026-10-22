@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
 import {
   Stethoscope, HeartHandshake, Baby, Syringe, Bandage, Activity, Accessibility, BedDouble,
   Phone, MessageCircle, ShieldCheck, Award, RefreshCw, ClipboardCheck, IndianRupee,
@@ -13,6 +13,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import hero from "@/assets/hero.jpg";
 import team from "@/assets/team.jpg";
+import rnMark from "@/assets/rn-mark.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,8 +27,11 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const PHONE = "+91 XXXXX XXXXX";
-const EMAIL = "info@rnhealthcare.com";
+const PHONE = "+91 93554 58926"; // primary
+const PHONE_ALT = "+91 75682 83522";
+const EMAIL = "rahuliti841266@gmail.com";
+const WHATSAPP = "https://wa.me/919355458926?text=Hi%2C%20I%20need%20home%20care%20assistance";
+const INSTAGRAM = "https://www.instagram.com/Nursing_student_1001";
 
 const services = [
   { icon: Stethoscope, title: "Nursing Care at Home", short: "GNM/ANM-qualified nurses for medical care at home.", detail: "Medication management, catheter & Ryles tube care, IV fluids, bedside monitoring and doctor coordination by trained nurses — on hourly, 12-hour or 24-hour shifts." },
@@ -47,7 +51,8 @@ const steps = [
   { icon: HeartHandshake, title: "Ongoing Care", text: "Regular supervision visits and feedback calls keep care on track." },
 ];
 
-const plans = [
+type PlanTone = "orange" | "purple" | "green";
+const plans: { name: string; tone: PlanTone; price: string; unit: string; alt?: string; points: string[]; featured?: boolean }[] = [
   { name: "Hourly Visit", tone: "orange", price: "₹499", unit: "/ visit onwards", points: ["Injections & IV drips", "Wound dressing", "Vitals check & report", "Catheter / Ryles tube care"] },
   { name: "Daily Care", tone: "purple", price: "₹1,199", unit: "/ 12 hr shift onwards", alt: "₹1,999 / 24 hr live-in", points: ["Trained nurse or attendant", "Medication & feeding", "Hygiene & mobility help", "Daily care log for family"], featured: true },
   { name: "Monthly Package", tone: "green", price: "₹28,000", unit: "/ month onwards", points: ["Dedicated caregiver", "Free replacement guarantee", "Weekly supervisor visit", "Priority 24×7 support"] },
@@ -102,10 +107,7 @@ const inputCls = "w-full rounded-xl border border-input bg-card px-4 py-3 text-s
 function Logo() {
   return (
     <a href="#home" className="flex min-w-0 items-center gap-2.5">
-      <span className="relative grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-accent text-accent-foreground shadow-soft">
-        <HomeIcon className="h-6 w-6" />
-        <Heart className="absolute -right-1 -top-1 h-4 w-4 fill-heart text-heart" />
-      </span>
+      <img src={rnMark} alt="RN Healthcare logo" width={44} height={44} className="h-11 w-11 shrink-0 drop-shadow-soft" />
       <span className="min-w-0 leading-tight">
         <span className="block truncate text-lg font-extrabold text-primary">RN <span className="text-green">Health</span></span>
         <span className="block truncate text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Home Care Service</span>
@@ -347,7 +349,7 @@ function HowItWorks() {
   );
 }
 
-const planTones: Record<"orange" | "purple" | "green", { card: string; name: string; check: string; btn: "cta" | "brand" | "green" }> = {
+const planTones: Record<PlanTone, { card: string; name: string; check: string; btn: "cta" | "brand" | "green" }> = {
   orange: { card: "border-accent/30 bg-accent/[0.07]", name: "text-accent", check: "text-accent", btn: "cta" },
   purple: { card: "border-primary/30 bg-primary/[0.07]", name: "text-primary", check: "text-primary", btn: "brand" },
   green: { card: "border-green/30 bg-green/[0.07]", name: "text-green", check: "text-green", btn: "green" },
@@ -495,6 +497,7 @@ function Contact() {
   const f = useDummyForm(z.object({ name: nameRule, phone: phoneRule, service: z.string({ message: "Choose a service" }).min(1, "Choose a service"), message: z.string().trim().max(500).optional() }));
   const info = [
     { icon: PhoneCall, l: "Call us 24×7", v: PHONE, href: `tel:${PHONE.replace(/\s/g, "")}` },
+    { icon: MessageCircle, l: "WhatsApp / Alternate number", v: PHONE_ALT, href: WHATSAPP },
     { icon: Mail, l: "Email", v: EMAIL, href: `mailto:${EMAIL}` },
     { icon: MapPin, l: "Office", v: "Sector 45, Gurugram, Haryana 122003" },
   ];
@@ -538,12 +541,13 @@ function Footer() {
           <Logo />
           <p className="mt-4 text-sm text-muted-foreground">Your health, our priority. Compassionate home healthcare in Gurugram, 24×7.</p>
           <div className="mt-4 flex gap-2">
-            {[Facebook, Instagram, Youtube, Linkedin].map((I, k) => <a key={k} href="#" aria-label="Social link" className="grid h-9 w-9 place-items-center rounded-full bg-secondary text-primary transition hover:bg-primary hover:text-primary-foreground"><I className="h-4 w-4" /></a>)}
+            <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram" className="grid h-9 w-9 place-items-center rounded-full bg-secondary text-primary transition hover:bg-primary hover:text-primary-foreground"><Instagram className="h-4 w-4" /></a>
+            {[Facebook, Youtube, Linkedin].map((I, k) => <a key={k} href="#" aria-label="Social link" className="grid h-9 w-9 place-items-center rounded-full bg-secondary text-primary transition hover:bg-primary hover:text-primary-foreground"><I className="h-4 w-4" /></a>)}
           </div>
         </div>
         <div><h4 className="font-semibold text-foreground">Quick Links</h4><ul className="mt-4 space-y-2 text-sm text-muted-foreground">{nav.map(([l, h]) => <li key={h}><a href={h} className="hover:text-primary">{l}</a></li>)}</ul></div>
         <div><h4 className="font-semibold text-foreground">Services</h4><ul className="mt-4 space-y-2 text-sm text-muted-foreground">{services.slice(0, 6).map((s) => <li key={s.title}><a href="#services" className="hover:text-primary">{s.title}</a></li>)}</ul></div>
-        <div><h4 className="font-semibold text-foreground">Contact</h4><ul className="mt-4 space-y-2 text-sm text-muted-foreground"><li>{PHONE}</li><li>{EMAIL}</li><li>Sector 45, Gurugram, Haryana</li><li>Open 24 hours, 7 days</li></ul></div>
+        <div><h4 className="font-semibold text-foreground">Contact</h4><ul className="mt-4 space-y-2 text-sm text-muted-foreground"><li><a href={`tel:${PHONE.replace(/\s/g, "")}`} className="hover:text-primary">{PHONE} (primary)</a></li><li><a href={`tel:${PHONE_ALT.replace(/\s/g, "")}`} className="hover:text-primary">{PHONE_ALT}</a></li><li><a href={`mailto:${EMAIL}`} className="hover:text-primary">{EMAIL}</a></li><li>Sector 45, Gurugram, Haryana</li><li>Open 24 hours, 7 days</li></ul></div>
       </div>
       <p className="border-t border-border py-5 text-center text-xs text-muted-foreground">© 2026 RN Health Home Care Service. All rights reserved.</p>
     </footer>
@@ -551,10 +555,27 @@ function Footer() {
 }
 
 function Floating() {
+  const tel = `tel:${PHONE.replace(/\s/g, "")}`;
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
-      <a href={`tel:${PHONE.replace(/\s/g, "")}`} aria-label="Call now" className="grid h-14 w-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-lift transition hover:scale-110"><Phone className="h-6 w-6" /></a>
-      <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20need%20home%20care%20assistance" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid h-14 w-14 place-items-center rounded-full bg-green text-green-foreground shadow-lift transition hover:scale-110"><MessageCircle className="h-6 w-6" /></a>
+    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+      <a
+        href={WHATSAPP}
+        target="_blank"
+        rel="noreferrer"
+        className="animate-cta flex items-center gap-2.5 rounded-full bg-green py-3.5 pl-4 pr-5 text-base font-bold text-green-foreground shadow-lift transition hover:scale-105"
+        style={{ "--pulse-color": "oklch(0.62 0.15 152 / 0.55)" } as CSSProperties}
+      >
+        <MessageCircle className="h-7 w-7" />
+        <span className="leading-none">WhatsApp<span className="mt-1 block text-[11px] font-semibold opacity-90">Chat with a nurse</span></span>
+      </a>
+      <a
+        href={tel}
+        className="animate-cta flex items-center gap-2.5 rounded-full bg-heart py-3.5 pl-4 pr-5 text-base font-bold text-primary-foreground shadow-lift transition hover:scale-105"
+        style={{ "--pulse-color": "oklch(0.58 0.21 22 / 0.55)" } as CSSProperties}
+      >
+        <Phone className="h-7 w-7" />
+        <span className="leading-none">Call 24×7<span className="mt-1 block text-[11px] font-semibold opacity-90">{PHONE}</span></span>
+      </a>
     </div>
   );
 }
