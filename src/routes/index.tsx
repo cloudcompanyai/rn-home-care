@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState, type CSSProperties, type FormEvent, type ReactNode } from "react";
 import {
   Stethoscope, HeartHandshake, Baby, Syringe, Bandage, Activity, Accessibility, BedDouble,
   Phone, MessageCircle, ShieldCheck, Award, RefreshCw, ClipboardCheck, IndianRupee,
@@ -562,7 +562,7 @@ function Floating() {
         target="_blank"
         rel="noreferrer"
         className="animate-cta flex items-center gap-2.5 rounded-full bg-green py-3.5 pl-4 pr-5 text-base font-bold text-green-foreground shadow-lift transition hover:scale-105"
-        style={{ "--pulse-color": "oklch(0.62 0.15 152 / 0.55)" } as React.CSSProperties}
+        style={{ "--pulse-color": "oklch(0.62 0.15 152 / 0.55)" } as CSSProperties}
       >
         <MessageCircle className="h-7 w-7" />
         <span className="leading-none">WhatsApp<span className="mt-1 block text-[11px] font-semibold opacity-90">Chat with a nurse</span></span>
@@ -570,7 +570,7 @@ function Floating() {
       <a
         href={tel}
         className="animate-cta flex items-center gap-2.5 rounded-full bg-heart py-3.5 pl-4 pr-5 text-base font-bold text-primary-foreground shadow-lift transition hover:scale-105"
-        style={{ "--pulse-color": "oklch(0.58 0.21 22 / 0.55)" } as React.CSSProperties}
+        style={{ "--pulse-color": "oklch(0.58 0.21 22 / 0.55)" } as CSSProperties}
       >
         <Phone className="h-7 w-7" />
         <span className="leading-none">Call 24×7<span className="mt-1 block text-[11px] font-semibold opacity-90">{PHONE}</span></span>
