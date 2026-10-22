@@ -13,6 +13,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import hero from "@/assets/hero.jpg";
 import team from "@/assets/team.jpg";
+import rnMark from "@/assets/rn-mark.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -26,8 +27,11 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const PHONE = "+91 XXXXX XXXXX";
-const EMAIL = "info@rnhealthcare.com";
+const PHONE = "+91 93554 58926"; // primary
+const PHONE_ALT = "+91 75682 83522";
+const EMAIL = "rahuliti841266@gmail.com";
+const WHATSAPP = "https://wa.me/919355458926?text=Hi%2C%20I%20need%20home%20care%20assistance";
+const INSTAGRAM = "https://www.instagram.com/Nursing_student_1001";
 
 const services = [
   { icon: Stethoscope, title: "Nursing Care at Home", short: "GNM/ANM-qualified nurses for medical care at home.", detail: "Medication management, catheter & Ryles tube care, IV fluids, bedside monitoring and doctor coordination by trained nurses — on hourly, 12-hour or 24-hour shifts." },
@@ -102,10 +106,7 @@ const inputCls = "w-full rounded-xl border border-input bg-card px-4 py-3 text-s
 function Logo() {
   return (
     <a href="#home" className="flex min-w-0 items-center gap-2.5">
-      <span className="relative grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-accent text-accent-foreground shadow-soft">
-        <HomeIcon className="h-6 w-6" />
-        <Heart className="absolute -right-1 -top-1 h-4 w-4 fill-heart text-heart" />
-      </span>
+      <img src={rnMark} alt="RN Healthcare logo" width={44} height={44} className="h-11 w-11 shrink-0 drop-shadow-soft" />
       <span className="min-w-0 leading-tight">
         <span className="block truncate text-lg font-extrabold text-primary">RN <span className="text-green">Health</span></span>
         <span className="block truncate text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">Home Care Service</span>
