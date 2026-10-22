@@ -496,6 +496,7 @@ function Contact() {
   const f = useDummyForm(z.object({ name: nameRule, phone: phoneRule, service: z.string({ message: "Choose a service" }).min(1, "Choose a service"), message: z.string().trim().max(500).optional() }));
   const info = [
     { icon: PhoneCall, l: "Call us 24×7", v: PHONE, href: `tel:${PHONE.replace(/\s/g, "")}` },
+    { icon: MessageCircle, l: "WhatsApp / Alternate number", v: PHONE_ALT, href: WHATSAPP },
     { icon: Mail, l: "Email", v: EMAIL, href: `mailto:${EMAIL}` },
     { icon: MapPin, l: "Office", v: "Sector 45, Gurugram, Haryana 122003" },
   ];
@@ -539,12 +540,13 @@ function Footer() {
           <Logo />
           <p className="mt-4 text-sm text-muted-foreground">Your health, our priority. Compassionate home healthcare in Gurugram, 24×7.</p>
           <div className="mt-4 flex gap-2">
-            {[Facebook, Instagram, Youtube, Linkedin].map((I, k) => <a key={k} href="#" aria-label="Social link" className="grid h-9 w-9 place-items-center rounded-full bg-secondary text-primary transition hover:bg-primary hover:text-primary-foreground"><I className="h-4 w-4" /></a>)}
+            <a href={INSTAGRAM} target="_blank" rel="noreferrer" aria-label="Instagram" className="grid h-9 w-9 place-items-center rounded-full bg-secondary text-primary transition hover:bg-primary hover:text-primary-foreground"><Instagram className="h-4 w-4" /></a>
+            {[Facebook, Youtube, Linkedin].map((I, k) => <a key={k} href="#" aria-label="Social link" className="grid h-9 w-9 place-items-center rounded-full bg-secondary text-primary transition hover:bg-primary hover:text-primary-foreground"><I className="h-4 w-4" /></a>)}
           </div>
         </div>
         <div><h4 className="font-semibold text-foreground">Quick Links</h4><ul className="mt-4 space-y-2 text-sm text-muted-foreground">{nav.map(([l, h]) => <li key={h}><a href={h} className="hover:text-primary">{l}</a></li>)}</ul></div>
         <div><h4 className="font-semibold text-foreground">Services</h4><ul className="mt-4 space-y-2 text-sm text-muted-foreground">{services.slice(0, 6).map((s) => <li key={s.title}><a href="#services" className="hover:text-primary">{s.title}</a></li>)}</ul></div>
-        <div><h4 className="font-semibold text-foreground">Contact</h4><ul className="mt-4 space-y-2 text-sm text-muted-foreground"><li>{PHONE}</li><li>{EMAIL}</li><li>Sector 45, Gurugram, Haryana</li><li>Open 24 hours, 7 days</li></ul></div>
+        <div><h4 className="font-semibold text-foreground">Contact</h4><ul className="mt-4 space-y-2 text-sm text-muted-foreground"><li><a href={`tel:${PHONE.replace(/\s/g, "")}`} className="hover:text-primary">{PHONE} (primary)</a></li><li><a href={`tel:${PHONE_ALT.replace(/\s/g, "")}`} className="hover:text-primary">{PHONE_ALT}</a></li><li><a href={`mailto:${EMAIL}`} className="hover:text-primary">{EMAIL}</a></li><li>Sector 45, Gurugram, Haryana</li><li>Open 24 hours, 7 days</li></ul></div>
       </div>
       <p className="border-t border-border py-5 text-center text-xs text-muted-foreground">© 2026 RN Health Home Care Service. All rights reserved.</p>
     </footer>
@@ -552,10 +554,27 @@ function Footer() {
 }
 
 function Floating() {
+  const tel = `tel:${PHONE.replace(/\s/g, "")}`;
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3">
-      <a href={`tel:${PHONE.replace(/\s/g, "")}`} aria-label="Call now" className="grid h-14 w-14 place-items-center rounded-full bg-primary text-primary-foreground shadow-lift transition hover:scale-110"><Phone className="h-6 w-6" /></a>
-      <a href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%20need%20home%20care%20assistance" target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid h-14 w-14 place-items-center rounded-full bg-green text-green-foreground shadow-lift transition hover:scale-110"><MessageCircle className="h-6 w-6" /></a>
+    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+      <a
+        href={WHATSAPP}
+        target="_blank"
+        rel="noreferrer"
+        className="animate-cta flex items-center gap-2.5 rounded-full bg-green py-3.5 pl-4 pr-5 text-base font-bold text-green-foreground shadow-lift transition hover:scale-105"
+        style={{ "--pulse-color": "oklch(0.62 0.15 152 / 0.55)" } as React.CSSProperties}
+      >
+        <MessageCircle className="h-7 w-7" />
+        <span className="leading-none">WhatsApp<span className="mt-1 block text-[11px] font-semibold opacity-90">Chat with a nurse</span></span>
+      </a>
+      <a
+        href={tel}
+        className="animate-cta flex items-center gap-2.5 rounded-full bg-heart py-3.5 pl-4 pr-5 text-base font-bold text-primary-foreground shadow-lift transition hover:scale-105"
+        style={{ "--pulse-color": "oklch(0.58 0.21 22 / 0.55)" } as React.CSSProperties}
+      >
+        <Phone className="h-7 w-7" />
+        <span className="leading-none">Call 24×7<span className="mt-1 block text-[11px] font-semibold opacity-90">{PHONE}</span></span>
+      </a>
     </div>
   );
 }
