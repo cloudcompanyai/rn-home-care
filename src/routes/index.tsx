@@ -51,7 +51,8 @@ const steps = [
   { icon: HeartHandshake, title: "Ongoing Care", text: "Regular supervision visits and feedback calls keep care on track." },
 ];
 
-const plans = [
+type PlanTone = "orange" | "purple" | "green";
+const plans: { name: string; tone: PlanTone; price: string; unit: string; alt?: string; points: string[]; featured?: boolean }[] = [
   { name: "Hourly Visit", tone: "orange", price: "₹499", unit: "/ visit onwards", points: ["Injections & IV drips", "Wound dressing", "Vitals check & report", "Catheter / Ryles tube care"] },
   { name: "Daily Care", tone: "purple", price: "₹1,199", unit: "/ 12 hr shift onwards", alt: "₹1,999 / 24 hr live-in", points: ["Trained nurse or attendant", "Medication & feeding", "Hygiene & mobility help", "Daily care log for family"], featured: true },
   { name: "Monthly Package", tone: "green", price: "₹28,000", unit: "/ month onwards", points: ["Dedicated caregiver", "Free replacement guarantee", "Weekly supervisor visit", "Priority 24×7 support"] },
@@ -348,7 +349,7 @@ function HowItWorks() {
   );
 }
 
-const planTones: Record<"orange" | "purple" | "green", { card: string; name: string; check: string; btn: "cta" | "brand" | "green" }> = {
+const planTones: Record<PlanTone, { card: string; name: string; check: string; btn: "cta" | "brand" | "green" }> = {
   orange: { card: "border-accent/30 bg-accent/[0.07]", name: "text-accent", check: "text-accent", btn: "cta" },
   purple: { card: "border-primary/30 bg-primary/[0.07]", name: "text-primary", check: "text-primary", btn: "brand" },
   green: { card: "border-green/30 bg-green/[0.07]", name: "text-green", check: "text-green", btn: "green" },
