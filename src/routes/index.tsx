@@ -517,7 +517,7 @@ function Contact() {
             <div className="relative text-center"><MapPin className="mx-auto h-10 w-10 fill-heart/20 text-heart" /><p className="mt-2 font-semibold text-primary">RN Health Home Care, Gurugram</p><p className="text-xs text-muted-foreground">Map preview</p></div>
           </div>
         </div>
-        <div className="rounded-3xl border border-border bg-card p-6 shadow-lift sm:p-8">
+        <div className="min-w-0 rounded-3xl border border-border bg-card p-6 shadow-lift sm:p-8">
           {f.done ? <Success onReset={f.reset} /> : (
             <form onSubmit={f.onSubmit} noValidate className="space-y-4">
               <Field label="Full name" error={f.errors.name}><input name="name" maxLength={80} className={inputCls} placeholder="Your name" /></Field>
