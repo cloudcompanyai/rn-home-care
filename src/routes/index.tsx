@@ -227,7 +227,7 @@ function Hero() {
       <span aria-hidden className="pointer-events-none absolute -left-24 top-8 h-72 w-72 rounded-full bg-pink/20 blur-3xl" />
       <span aria-hidden className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
       <span aria-hidden className="pointer-events-none absolute left-1/2 top-44 h-64 w-64 rounded-full bg-green/15 blur-3xl" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.15fr_1fr] lg:py-14 sm:py-20">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:py-20 lg:grid-cols-[1.15fr_1fr] lg:py-20">
         <div className="reveal">
           <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-1.5 text-xs font-semibold text-accent">
             <span className="h-2 w-2 animate-pulse rounded-full bg-accent" /> Available 24×7 in Gurugram & NCR
@@ -409,7 +409,7 @@ function Testimonials() {
   return (
     <section className="mx-auto max-w-4xl px-4 py-14 sm:py-20">
       <SectionHead eyebrow="Kind words" title="What Families Say" />
-      <div className="relative rounded-3xl border border-border bg-card p-8 text-center shadow-soft sm:p-12">
+      <div className="relative rounded-3xl border border-border bg-card p-6 text-center shadow-soft sm:p-12">
         <div className="flex justify-center gap-1">{Array.from({ length: 5 }).map((_, k) => <Star key={k} className="h-5 w-5 fill-chart-4 text-chart-4" />)}</div>
         <p key={i} className="reveal mt-6 text-lg leading-relaxed text-foreground sm:text-xl">“{t.text}”</p>
         <p className="mt-6 font-semibold text-primary">{t.name}</p>
@@ -536,7 +536,7 @@ function Contact() {
 function Footer() {
   return (
     <footer className="border-t border-border bg-card">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-2 sm:py-14 lg:grid-cols-4">
         <div>
           <Logo />
           <p className="mt-4 text-sm text-muted-foreground">Your health, our priority. Compassionate home healthcare in Gurugram, 24×7.</p>
