@@ -227,7 +227,7 @@ function Hero() {
       <span aria-hidden className="pointer-events-none absolute -left-24 top-8 h-72 w-72 rounded-full bg-pink/20 blur-3xl" />
       <span aria-hidden className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
       <span aria-hidden className="pointer-events-none absolute left-1/2 top-44 h-64 w-64 rounded-full bg-green/15 blur-3xl" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.15fr_1fr] lg:py-20">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.15fr_1fr] lg:py-14 sm:py-20">
         <div className="reveal">
           <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-1.5 text-xs font-semibold text-accent">
             <span className="h-2 w-2 animate-pulse rounded-full bg-accent" /> Available 24×7 in Gurugram & NCR
@@ -296,7 +296,7 @@ function Services() {
   const [active, setActive] = useState<number | null>(null);
   const s = active === null ? null : services[active];
   return (
-    <section id="services" className="mx-auto max-w-7xl px-4 py-20">
+    <section id="services" className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
       <SectionHead eyebrow="What we do" title="Home Healthcare Services" sub="Every service is delivered by trained, verified professionals and tailored to your family's needs." />
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((s, i) => (
@@ -331,7 +331,7 @@ function Services() {
 
 function HowItWorks() {
   return (
-    <section id="how" className="bg-muted py-20">
+    <section id="how" className="bg-muted py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <SectionHead eyebrow="Simple & quick" title="How It Works" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -357,7 +357,7 @@ const planTones: Record<PlanTone, { card: string; name: string; check: string; b
 
 function Pricing() {
   return (
-    <section id="pricing" className="mx-auto max-w-7xl px-4 py-20">
+    <section id="pricing" className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
       <SectionHead eyebrow="Honest pricing" title="Care Plans for Every Need" sub="Indicative starting prices. Final quote depends on patient condition and caregiver type." />
       <div className="grid gap-6 lg:grid-cols-3">
         {plans.map((p) => {
@@ -382,7 +382,7 @@ function Pricing() {
 
 function WhyUs() {
   return (
-    <section className="bg-muted py-20">
+    <section className="bg-muted py-14 sm:py-20">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 lg:grid-cols-2">
         <img src={team} alt="RN Health nursing team" width={1024} height={768} loading="lazy" className="rounded-3xl object-cover shadow-lift" />
         <div>
@@ -407,7 +407,7 @@ function Testimonials() {
   useEffect(() => { const t = setInterval(() => setI((x) => (x + 1) % testimonials.length), 6000); return () => clearInterval(t); }, []);
   const t = testimonials[i] ?? testimonials[0]!;
   return (
-    <section className="mx-auto max-w-4xl px-4 py-20">
+    <section className="mx-auto max-w-4xl px-4 py-14 sm:py-20">
       <SectionHead eyebrow="Kind words" title="What Families Say" />
       <div className="relative rounded-3xl border border-border bg-card p-8 text-center shadow-soft sm:p-12">
         <div className="flex justify-center gap-1">{Array.from({ length: 5 }).map((_, k) => <Star key={k} className="h-5 w-5 fill-chart-4 text-chart-4" />)}</div>
@@ -432,7 +432,7 @@ function Careers() {
     city: z.string().trim().min(2, "Enter your city").max(60),
   }));
   return (
-    <section id="careers" className="bg-brand py-20 text-primary-foreground">
+    <section id="careers" className="bg-brand py-14 sm:py-20 text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 lg:grid-cols-2">
         <div>
           <p className="font-script text-2xl">Grow with us</p>
@@ -466,7 +466,7 @@ function Careers() {
 
 function Faq() {
   return (
-    <section className="mx-auto max-w-3xl px-4 py-20">
+    <section className="mx-auto max-w-3xl px-4 py-14 sm:py-20">
       <SectionHead eyebrow="Got questions?" title="Frequently Asked Questions" />
       <Accordion type="single" collapsible className="space-y-3">
         {faqs.map(([q, a], i) => (
@@ -482,7 +482,7 @@ function Faq() {
 
 function Areas() {
   return (
-    <section className="bg-muted py-16">
+    <section className="bg-muted py-10 sm:py-16">
       <div className="mx-auto max-w-5xl px-4 text-center">
         <SectionHead eyebrow="Near you" title="Areas We Serve" sub="Gurugram and nearby NCR localities — with caregivers living close by for faster response." />
         <div className="flex flex-wrap justify-center gap-3">
@@ -502,7 +502,7 @@ function Contact() {
     { icon: MapPin, l: "Office", v: "Sector 45, Gurugram, Haryana 122003" },
   ];
   return (
-    <section id="contact" className="mx-auto max-w-7xl px-4 py-20">
+    <section id="contact" className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
       <SectionHead eyebrow="We're here for you" title="Contact Us" />
       <div className="grid min-w-0 gap-8 lg:grid-cols-2">
         <div className="min-w-0 space-y-4">
