@@ -227,7 +227,7 @@ function Hero() {
       <span aria-hidden className="pointer-events-none absolute -left-24 top-8 h-72 w-72 rounded-full bg-pink/20 blur-3xl" />
       <span aria-hidden className="pointer-events-none absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-accent/20 blur-3xl" />
       <span aria-hidden className="pointer-events-none absolute left-1/2 top-44 h-64 w-64 rounded-full bg-green/15 blur-3xl" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 lg:grid-cols-[1.15fr_1fr] lg:py-20">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:py-20 lg:grid-cols-[1.15fr_1fr] lg:py-20">
         <div className="reveal">
           <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-4 py-1.5 text-xs font-semibold text-accent">
             <span className="h-2 w-2 animate-pulse rounded-full bg-accent" /> Available 24×7 in Gurugram & NCR
@@ -296,7 +296,7 @@ function Services() {
   const [active, setActive] = useState<number | null>(null);
   const s = active === null ? null : services[active];
   return (
-    <section id="services" className="mx-auto max-w-7xl px-4 py-20">
+    <section id="services" className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
       <SectionHead eyebrow="What we do" title="Home Healthcare Services" sub="Every service is delivered by trained, verified professionals and tailored to your family's needs." />
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((s, i) => (
@@ -331,7 +331,7 @@ function Services() {
 
 function HowItWorks() {
   return (
-    <section id="how" className="bg-muted py-20">
+    <section id="how" className="bg-muted py-14 sm:py-20">
       <div className="mx-auto max-w-7xl px-4">
         <SectionHead eyebrow="Simple & quick" title="How It Works" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -357,7 +357,7 @@ const planTones: Record<PlanTone, { card: string; name: string; check: string; b
 
 function Pricing() {
   return (
-    <section id="pricing" className="mx-auto max-w-7xl px-4 py-20">
+    <section id="pricing" className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
       <SectionHead eyebrow="Honest pricing" title="Care Plans for Every Need" sub="Indicative starting prices. Final quote depends on patient condition and caregiver type." />
       <div className="grid gap-6 lg:grid-cols-3">
         {plans.map((p) => {
@@ -382,7 +382,7 @@ function Pricing() {
 
 function WhyUs() {
   return (
-    <section className="bg-muted py-20">
+    <section className="bg-muted py-14 sm:py-20">
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 lg:grid-cols-2">
         <img src={team} alt="RN Health nursing team" width={1024} height={768} loading="lazy" className="rounded-3xl object-cover shadow-lift" />
         <div>
@@ -407,9 +407,9 @@ function Testimonials() {
   useEffect(() => { const t = setInterval(() => setI((x) => (x + 1) % testimonials.length), 6000); return () => clearInterval(t); }, []);
   const t = testimonials[i] ?? testimonials[0]!;
   return (
-    <section className="mx-auto max-w-4xl px-4 py-20">
+    <section className="mx-auto max-w-4xl px-4 py-14 sm:py-20">
       <SectionHead eyebrow="Kind words" title="What Families Say" />
-      <div className="relative rounded-3xl border border-border bg-card p-8 text-center shadow-soft sm:p-12">
+      <div className="relative rounded-3xl border border-border bg-card p-6 text-center shadow-soft sm:p-12">
         <div className="flex justify-center gap-1">{Array.from({ length: 5 }).map((_, k) => <Star key={k} className="h-5 w-5 fill-chart-4 text-chart-4" />)}</div>
         <p key={i} className="reveal mt-6 text-lg leading-relaxed text-foreground sm:text-xl">“{t.text}”</p>
         <p className="mt-6 font-semibold text-primary">{t.name}</p>
@@ -432,7 +432,7 @@ function Careers() {
     city: z.string().trim().min(2, "Enter your city").max(60),
   }));
   return (
-    <section id="careers" className="bg-brand py-20 text-primary-foreground">
+    <section id="careers" className="bg-brand py-14 sm:py-20 text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 lg:grid-cols-2">
         <div>
           <p className="font-script text-2xl">Grow with us</p>
@@ -466,7 +466,7 @@ function Careers() {
 
 function Faq() {
   return (
-    <section className="mx-auto max-w-3xl px-4 py-20">
+    <section className="mx-auto max-w-3xl px-4 py-14 sm:py-20">
       <SectionHead eyebrow="Got questions?" title="Frequently Asked Questions" />
       <Accordion type="single" collapsible className="space-y-3">
         {faqs.map(([q, a], i) => (
@@ -482,7 +482,7 @@ function Faq() {
 
 function Areas() {
   return (
-    <section className="bg-muted py-16">
+    <section className="bg-muted py-10 sm:py-16">
       <div className="mx-auto max-w-5xl px-4 text-center">
         <SectionHead eyebrow="Near you" title="Areas We Serve" sub="Gurugram and nearby NCR localities — with caregivers living close by for faster response." />
         <div className="flex flex-wrap justify-center gap-3">
@@ -502,14 +502,14 @@ function Contact() {
     { icon: MapPin, l: "Office", v: "Sector 45, Gurugram, Haryana 122003" },
   ];
   return (
-    <section id="contact" className="mx-auto max-w-7xl px-4 py-20">
+    <section id="contact" className="mx-auto max-w-7xl px-4 py-14 sm:py-20">
       <SectionHead eyebrow="We're here for you" title="Contact Us" />
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div className="space-y-4">
+      <div className="grid min-w-0 gap-8 lg:grid-cols-2">
+        <div className="min-w-0 space-y-4">
           {info.map((x, i) => (
-            <a key={x.l} href={x.href} className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft">
+            <a key={x.l} href={x.href} className="flex min-w-0 items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft">
               <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${tileCls[i % 4]}`}><x.icon className="h-5 w-5" /></span>
-              <div className="min-w-0"><p className="text-xs text-muted-foreground">{x.l}</p><p className="truncate font-semibold text-foreground">{x.v}</p></div>
+              <div className="min-w-0"><p className="text-xs text-muted-foreground">{x.l}</p><p className="break-words font-semibold text-foreground">{x.v}</p></div>
             </a>
           ))}
           <div className="relative grid h-56 place-items-center overflow-hidden rounded-2xl border border-border bg-secondary">
@@ -517,7 +517,7 @@ function Contact() {
             <div className="relative text-center"><MapPin className="mx-auto h-10 w-10 fill-heart/20 text-heart" /><p className="mt-2 font-semibold text-primary">RN Health Home Care, Gurugram</p><p className="text-xs text-muted-foreground">Map preview</p></div>
           </div>
         </div>
-        <div className="rounded-3xl border border-border bg-card p-6 shadow-lift sm:p-8">
+        <div className="min-w-0 rounded-3xl border border-border bg-card p-6 shadow-lift sm:p-8">
           {f.done ? <Success onReset={f.reset} /> : (
             <form onSubmit={f.onSubmit} noValidate className="space-y-4">
               <Field label="Full name" error={f.errors.name}><input name="name" maxLength={80} className={inputCls} placeholder="Your name" /></Field>
@@ -536,7 +536,7 @@ function Contact() {
 function Footer() {
   return (
     <footer className="border-t border-border bg-card">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 sm:grid-cols-2 sm:py-14 lg:grid-cols-4">
         <div>
           <Logo />
           <p className="mt-4 text-sm text-muted-foreground">Your health, our priority. Compassionate home healthcare in Gurugram, 24×7.</p>
@@ -549,7 +549,7 @@ function Footer() {
         <div><h4 className="font-semibold text-foreground">Services</h4><ul className="mt-4 space-y-2 text-sm text-muted-foreground">{services.slice(0, 6).map((s) => <li key={s.title}><a href="#services" className="hover:text-primary">{s.title}</a></li>)}</ul></div>
         <div><h4 className="font-semibold text-foreground">Contact</h4><ul className="mt-4 space-y-2 text-sm text-muted-foreground"><li><a href={`tel:${PHONE.replace(/\s/g, "")}`} className="hover:text-primary">{PHONE} (primary)</a></li><li><a href={`tel:${PHONE_ALT.replace(/\s/g, "")}`} className="hover:text-primary">{PHONE_ALT}</a></li><li><a href={`mailto:${EMAIL}`} className="hover:text-primary">{EMAIL}</a></li><li>Sector 45, Gurugram, Haryana</li><li>Open 24 hours, 7 days</li></ul></div>
       </div>
-      <p className="border-t border-border py-5 text-center text-xs text-muted-foreground">© 2026 RN Health Home Care Service. All rights reserved.</p>
+      <p className="border-t border-border px-4 pb-44 pt-5 text-center text-xs text-muted-foreground sm:pb-5">© 2026 RN Health Home Care Service. All rights reserved.</p>
     </footer>
   );
 }
@@ -557,24 +557,24 @@ function Footer() {
 function Floating() {
   const tel = `tel:${PHONE.replace(/\s/g, "")}`;
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-2.5 sm:bottom-5 sm:right-5 sm:gap-3">
       <a
         href={WHATSAPP}
         target="_blank"
         rel="noreferrer"
-        className="animate-cta flex items-center gap-2.5 rounded-full bg-green py-3.5 pl-4 pr-5 text-base font-bold text-green-foreground shadow-lift transition hover:scale-105"
+        className="animate-cta flex items-center gap-2 rounded-full bg-green py-3 pl-3.5 pr-4 text-sm font-bold text-green-foreground shadow-lift transition hover:scale-105 sm:gap-2.5 sm:py-3.5 sm:pl-4 sm:pr-5 sm:text-base"
         style={{ "--pulse-color": "oklch(0.62 0.15 152 / 0.55)" } as CSSProperties}
       >
-        <MessageCircle className="h-7 w-7" />
-        <span className="leading-none">WhatsApp<span className="mt-1 block text-[11px] font-semibold opacity-90">Chat with a nurse</span></span>
+        <MessageCircle className="h-6 w-6 sm:h-7 sm:w-7" />
+        <span className="leading-none">WhatsApp<span className="mt-1 hidden text-[11px] font-semibold opacity-90 sm:block">Chat with a nurse</span></span>
       </a>
       <a
         href={tel}
-        className="animate-cta flex items-center gap-2.5 rounded-full bg-heart py-3.5 pl-4 pr-5 text-base font-bold text-primary-foreground shadow-lift transition hover:scale-105"
+        className="animate-cta flex items-center gap-2 rounded-full bg-heart py-3 pl-3.5 pr-4 text-sm font-bold text-primary-foreground shadow-lift transition hover:scale-105 sm:gap-2.5 sm:py-3.5 sm:pl-4 sm:pr-5 sm:text-base"
         style={{ "--pulse-color": "oklch(0.58 0.21 22 / 0.55)" } as CSSProperties}
       >
-        <Phone className="h-7 w-7" />
-        <span className="leading-none">Call 24×7<span className="mt-1 block text-[11px] font-semibold opacity-90">{PHONE}</span></span>
+        <Phone className="h-6 w-6 sm:h-7 sm:w-7" />
+        <span className="leading-none">Call 24×7<span className="mt-1 hidden text-[11px] font-semibold opacity-90 sm:block">{PHONE}</span></span>
       </a>
     </div>
   );
