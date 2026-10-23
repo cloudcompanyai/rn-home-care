@@ -557,24 +557,24 @@ function Footer() {
 function Floating() {
   const tel = `tel:${PHONE.replace(/\s/g, "")}`;
   return (
-    <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+    <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-2.5 sm:bottom-5 sm:right-5 sm:gap-3">
       <a
         href={WHATSAPP}
         target="_blank"
         rel="noreferrer"
-        className="animate-cta flex items-center gap-2.5 rounded-full bg-green py-3.5 pl-4 pr-5 text-base font-bold text-green-foreground shadow-lift transition hover:scale-105"
+        className="animate-cta flex items-center gap-2 rounded-full bg-green py-3 pl-3.5 pr-4 text-sm font-bold text-green-foreground shadow-lift transition hover:scale-105 sm:gap-2.5 sm:py-3.5 sm:pl-4 sm:pr-5 sm:text-base"
         style={{ "--pulse-color": "oklch(0.62 0.15 152 / 0.55)" } as CSSProperties}
       >
-        <MessageCircle className="h-7 w-7" />
-        <span className="leading-none">WhatsApp<span className="mt-1 block text-[11px] font-semibold opacity-90">Chat with a nurse</span></span>
+        <MessageCircle className="h-6 w-6 sm:h-7 sm:w-7" />
+        <span className="leading-none">WhatsApp<span className="mt-1 hidden text-[11px] font-semibold opacity-90 sm:block">Chat with a nurse</span></span>
       </a>
       <a
         href={tel}
-        className="animate-cta flex items-center gap-2.5 rounded-full bg-heart py-3.5 pl-4 pr-5 text-base font-bold text-primary-foreground shadow-lift transition hover:scale-105"
+        className="animate-cta flex items-center gap-2 rounded-full bg-heart py-3 pl-3.5 pr-4 text-sm font-bold text-primary-foreground shadow-lift transition hover:scale-105 sm:gap-2.5 sm:py-3.5 sm:pl-4 sm:pr-5 sm:text-base"
         style={{ "--pulse-color": "oklch(0.58 0.21 22 / 0.55)" } as CSSProperties}
       >
-        <Phone className="h-7 w-7" />
-        <span className="leading-none">Call 24×7<span className="mt-1 block text-[11px] font-semibold opacity-90">{PHONE}</span></span>
+        <Phone className="h-6 w-6 sm:h-7 sm:w-7" />
+        <span className="leading-none">Call 24×7<span className="mt-1 hidden text-[11px] font-semibold opacity-90 sm:block">{PHONE}</span></span>
       </a>
     </div>
   );
