@@ -504,12 +504,12 @@ function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-7xl px-4 py-20">
       <SectionHead eyebrow="We're here for you" title="Contact Us" />
-      <div className="grid gap-8 lg:grid-cols-2">
-        <div className="space-y-4">
+      <div className="grid min-w-0 gap-8 lg:grid-cols-2">
+        <div className="min-w-0 space-y-4">
           {info.map((x, i) => (
-            <a key={x.l} href={x.href} className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft">
+            <a key={x.l} href={x.href} className="flex min-w-0 items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft">
               <span className={`grid h-12 w-12 shrink-0 place-items-center rounded-xl ${tileCls[i % 4]}`}><x.icon className="h-5 w-5" /></span>
-              <div className="min-w-0"><p className="text-xs text-muted-foreground">{x.l}</p><p className="truncate font-semibold text-foreground">{x.v}</p></div>
+              <div className="min-w-0"><p className="text-xs text-muted-foreground">{x.l}</p><p className="break-words font-semibold text-foreground">{x.v}</p></div>
             </a>
           ))}
           <div className="relative grid h-56 place-items-center overflow-hidden rounded-2xl border border-border bg-secondary">
