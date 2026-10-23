@@ -549,7 +549,7 @@ function Footer() {
         <div><h4 className="font-semibold text-foreground">Services</h4><ul className="mt-4 space-y-2 text-sm text-muted-foreground">{services.slice(0, 6).map((s) => <li key={s.title}><a href="#services" className="hover:text-primary">{s.title}</a></li>)}</ul></div>
         <div><h4 className="font-semibold text-foreground">Contact</h4><ul className="mt-4 space-y-2 text-sm text-muted-foreground"><li><a href={`tel:${PHONE.replace(/\s/g, "")}`} className="hover:text-primary">{PHONE} (primary)</a></li><li><a href={`tel:${PHONE_ALT.replace(/\s/g, "")}`} className="hover:text-primary">{PHONE_ALT}</a></li><li><a href={`mailto:${EMAIL}`} className="hover:text-primary">{EMAIL}</a></li><li>Sector 45, Gurugram, Haryana</li><li>Open 24 hours, 7 days</li></ul></div>
       </div>
-      <p className="border-t border-border px-4 pb-24 pt-5 text-center text-xs text-muted-foreground sm:pb-5">© 2026 RN Health Home Care Service. All rights reserved.</p>
+      <p className="border-t border-border px-4 pb-44 pt-5 text-center text-xs text-muted-foreground sm:pb-5">© 2026 RN Health Home Care Service. All rights reserved.</p>
     </footer>
   );
 }
