@@ -5,7 +5,7 @@ import {
   Phone, MessageCircle, ShieldCheck, Award, RefreshCw, ClipboardCheck, IndianRupee,
   Clock, Users, BadgeCheck, Wallet, MapPin, Mail, Star, ChevronLeft, ChevronRight,
   CheckCircle2, Menu, X, Heart, Facebook, Instagram, Youtube, Linkedin, PhoneCall,
-  UserCheck, Home as HomeIcon,
+  UserCheck, Home as HomeIcon, Flower2, Salad,
 } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -42,6 +42,8 @@ const services = [
   { icon: Bandage, title: "Wound Dressing", short: "Sterile dressing for surgical & chronic wounds.", detail: "Post-surgical wounds, diabetic foot ulcers, bedsores and burns dressed with sterile technique and progress updates shared with your doctor." },
   { icon: Activity, title: "Vital Signs Monitoring", short: "BP, sugar, SpO₂ & temperature tracking.", detail: "Regular vitals checks with a written log, early-warning alerts to family, and reports you can share with your treating physician." },
   { icon: Accessibility, title: "Physiotherapy & Post-Hospital Care", short: "Recovery support after discharge.", detail: "Certified physiotherapists for post-surgery, stroke, fracture and joint replacement rehab, combined with nursing support during the critical recovery weeks." },
+  { icon: Flower2, title: "Yoga & Wellness at Home", short: "Personal yoga sessions for strength & calm.", detail: "Certified yoga instructors design gentle, safe sessions for seniors, post-surgery recovery, pregnancy, back pain and stress relief — one-on-one, at your home and pace." },
+  { icon: Salad, title: "Dietician & Nutrition Consultation", short: "Expert diet plans for every condition.", detail: "Qualified dietitians assess your health reports and lifestyle to create practical meal plans for diabetes, BP, weight, pregnancy, child nutrition and post-surgery recovery." },
 ];
 
 const steps = [
