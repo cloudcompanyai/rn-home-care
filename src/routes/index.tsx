@@ -5,7 +5,7 @@ import {
   Phone, MessageCircle, ShieldCheck, Award, RefreshCw, ClipboardCheck, IndianRupee,
   Clock, Users, BadgeCheck, Wallet, MapPin, Mail, Star, ChevronLeft, ChevronRight,
   CheckCircle2, Menu, X, Heart, Facebook, Instagram, Youtube, Linkedin, PhoneCall,
-  UserCheck, Home as HomeIcon,
+  UserCheck, Home as HomeIcon, Flower2, Salad,
 } from "lucide-react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -19,7 +19,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "RN Health Home Care Service – 24×7 Nursing at Home in Gurugram" },
-      { name: "description", content: "Trained nurses, elderly care, baby care, injections, wound dressing and physiotherapy at your doorstep in Gurugram & NCR. Available 24×7." },
+      { name: "description", content: "Trained nurses, elderly care, baby care, injections, wound dressing, physiotherapy, yoga and dietitian services at your doorstep in Gurugram & NCR. Available 24×7." },
       { property: "og:title", content: "RN Health Home Care Service – Gurugram" },
       { property: "og:description", content: "Compassionate, professional home healthcare in Gurugram, available 24×7." },
     ],
@@ -42,6 +42,8 @@ const services = [
   { icon: Bandage, title: "Wound Dressing", short: "Sterile dressing for surgical & chronic wounds.", detail: "Post-surgical wounds, diabetic foot ulcers, bedsores and burns dressed with sterile technique and progress updates shared with your doctor." },
   { icon: Activity, title: "Vital Signs Monitoring", short: "BP, sugar, SpO₂ & temperature tracking.", detail: "Regular vitals checks with a written log, early-warning alerts to family, and reports you can share with your treating physician." },
   { icon: Accessibility, title: "Physiotherapy & Post-Hospital Care", short: "Recovery support after discharge.", detail: "Certified physiotherapists for post-surgery, stroke, fracture and joint replacement rehab, combined with nursing support during the critical recovery weeks." },
+  { icon: Flower2, title: "Yoga & Wellness at Home", short: "Personal yoga sessions for strength & calm.", detail: "Certified yoga instructors design gentle, safe sessions for seniors, post-surgery recovery, pregnancy, back pain and stress relief — one-on-one, at your home and pace." },
+  { icon: Salad, title: "Dietician & Nutrition Consultation", short: "Expert diet plans for every condition.", detail: "Qualified dietitians assess your health reports and lifestyle to create practical meal plans for diabetes, BP, weight, pregnancy, child nutrition and post-surgery recovery." },
 ];
 
 const steps = [
@@ -239,7 +241,7 @@ function Hero() {
           </h1>
           <p className="mt-3 font-script text-3xl text-accent">Ghar par behtar care, har pal saath ♡</p>
           <p className="mt-4 max-w-xl text-lg text-muted-foreground">
-            Trained nurses, caregivers and physiotherapists who treat your loved ones with comfort, safety and dignity — right at your doorstep.
+            Trained nurses, caregivers, physiotherapists, yoga instructors and dietitians who treat your loved ones with comfort, safety and dignity — right at your doorstep.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Button asChild variant="cta" size="xl"><a href="#enquiry">Book a Nurse</a></Button>
@@ -437,7 +439,7 @@ function Careers() {
         <div>
           <p className="font-script text-2xl">Grow with us</p>
           <h2 className="mt-1 text-3xl font-bold sm:text-4xl">Join Our Team</h2>
-          <p className="mt-4 max-w-lg opacity-90">We're hiring GNM/ANM nurses, patient attendants, japa caregivers and physiotherapists across Gurugram. Get timely salary, flexible shifts, training and respect for the work you do.</p>
+          <p className="mt-4 max-w-lg opacity-90">We're hiring GNM/ANM nurses, patient attendants, japa caregivers, physiotherapists, yoga instructors and dietitians across Gurugram. Get timely salary, flexible shifts, training and respect for the work you do.</p>
           <ul className="mt-6 space-y-3">
             {["Salary on time, every month", "Free skill-upgrade training", "Day, night & live-in shifts", "Supportive supervisor team"].map((x) => <li key={x} className="flex gap-2"><CheckCircle2 className="h-5 w-5 shrink-0" />{x}</li>)}
           </ul>
@@ -448,7 +450,7 @@ function Careers() {
               <Field label="Full name" error={f.errors.name}><input name="name" maxLength={80} className={inputCls} placeholder="Your name" /></Field>
               <Field label="Mobile number" error={f.errors.phone}><input name="phone" inputMode="numeric" maxLength={10} className={inputCls} placeholder="10-digit mobile" /></Field>
               <Field label="Qualification" error={f.errors.qualification}>
-                <select name="qualification" defaultValue="" className={inputCls}><option value="" disabled>Select</option>{["GNM", "ANM", "B.Sc Nursing", "Physiotherapist (BPT/MPT)", "Patient Attendant", "Japa / Baby Care"].map((q) => <option key={q}>{q}</option>)}</select>
+                <select name="qualification" defaultValue="" className={inputCls}><option value="" disabled>Select</option>{["GNM", "ANM", "B.Sc Nursing", "Physiotherapist (BPT/MPT)", "Yoga Instructor (Certified)", "Dietitian / Nutritionist", "Patient Attendant", "Japa / Baby Care"].map((q) => <option key={q}>{q}</option>)}</select>
               </Field>
               <Field label="Experience" error={f.errors.experience}>
                 <select name="experience" defaultValue="" className={inputCls}><option value="" disabled>Select</option>{["Fresher", "1–2 years", "3–5 years", "5+ years"].map((q) => <option key={q}>{q}</option>)}</select>
